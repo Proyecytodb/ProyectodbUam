@@ -60,7 +60,7 @@ create table ReqSalaEventos(
 	FechaDevolucion datetime not null default('')
 )
 create table SalaEventos(
-	idSalaEventos int primary key,
+	IdSalaEventos int primary key,
 	IdReqSE int not null references ReqSalaEventos(IdReqSE),
 	IdHorario int not null references Horario(IdHorario),
 	numeroAsientos int not null default(0),
@@ -150,6 +150,7 @@ create table SalonBaile(
 	Cliente int not null default(000000000),
 	activo bit default(1)
 )
+
 
 --creacion de la tabla perfiles
 create table Perfiles(
