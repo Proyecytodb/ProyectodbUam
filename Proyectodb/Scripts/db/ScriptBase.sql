@@ -24,6 +24,11 @@ go
 use Proyectodb;
 go
 
+--Creacion de Tabla Estados
+create table Estado(
+	IdEstado bit primary key,
+	Descripcion nvarchar(50) not null default('No Disponible')
+)
 --Creacion de tablas Horario, Precio, Parqueo
 create table RagoDias(
 	IdRangoDias int primary key,
@@ -61,6 +66,7 @@ create table ReqSalaEventos(
 )
 create table SalaEventos(
 	IdSalaEventos int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReqSE int not null references ReqSalaEventos(IdReqSE),
 	IdHorario int not null references Horario(IdHorario),
 	numeroAsientos int not null default(0),
@@ -80,75 +86,75 @@ create table Requerimientos(
 --crear tablas referente a las 8 zonas
 create table CanchaBasketBall(
 	IdCanchaBasketBall int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)	
 )
 create table Piscina(
 	IdPiscina int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table Restaurante(
 	IdRestaurante int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table CampoGolf(
 	IdCampoGolf int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table CanchaTenis(
 	IdCanchaTenis int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table CanchaFutbol(
 	IdCanchaFutbol int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table Spa(
 	IdSpa int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 create table SalonBaile(
 	IdSalonBaile int primary key,
+	IdEstado bit references Estado(IdEstado),
 	IdReq int not null references Requerimientos(IdReq),
 	IdHorario int not null references Horario(IdHorario),
 	FechaReserva datetime not null default(''),
 	HoraReserva time not null default('06:00'),
-	Cliente int not null default(000000000),
-	activo bit default(1)
+	Cliente int not null default(000000000)
 )
 
 
@@ -156,8 +162,8 @@ create table SalonBaile(
 create table Perfiles(
 	IdPerfil int primary key,
 	NombrePerfil nvarchar(50) not null default('Sin descripcion'),
-	activo bit default(1),
-	idSalaEventos int not null references SalaEventos(idSalaEventos),
+	IdEstado bit references Estado(IdEstado),
+	IdSalaEventos int not null references SalaEventos(IdSalaEventos),
 	IdCanchaBasketBall int not null references CanchaBasketBall(IdCanchaBasketBall),
 	IdPiscina int not null references Piscina(IdPiscina),
 	IdRestaurante int not null references Restaurante(IdRestaurante),
@@ -172,8 +178,10 @@ create table Perfiles(
 
 --Creacion tabla Usuario
 create table Usuario(
-	Cedula int primary key,
+	ID int primary key,
 	NombreUsuario nvarchar(50) not null,
+	ApellidoUsuario nvarchar(50) not null,
 	Estado bit default(0),
+	IdHorario int not null references Horario(IdHorario),
 	IdPerfil int not null references Perfiles(IdPerfil)
 )

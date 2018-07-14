@@ -25,4 +25,5 @@ insert into Horario values (0,'Sin descripcion','00:00','00:00',0),
 						   (600,'CanchaTenis','08:00','22:00',0),
 						   (700,'CanchaFutbol','08:00','22:00',0),
 						   (800,'Spa','08:00','22:00',0),
-						   (900,'SalonBaile','08:00','22:00',0)
+						   (900,'SalonBaile','08:00','22:00',0),
+						   (1000,'Cliente','00:00','00:00',0)
