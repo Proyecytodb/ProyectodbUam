@@ -1,6 +1,5 @@
 use Proyectodb
 go
-
 insert into Usuario values	
 (1674,'David','Lemus',1,1,4),(1056,'Javier','Santana',1,1,4),(1977,'Virginia','Saldarriaga',1,1,4),
 (1725,'Sergio','Posada',1,2,4),(1675,'Jorge','Zea',1,2,4),(1964,'Mariana','Diaz',1,2,4),

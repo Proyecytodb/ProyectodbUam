@@ -10,8 +10,8 @@ insert into Piscina values	(0,0,0,300,'','',''),
 insert into Restaurante values	(0,0,0,400,'','',''),
 								(1,1,0,400,'','','')
 
-insert into CampoGolf values	(0,0,0,500,'','',''),
-								(1,1,0,500,'','','')
+insert into CampoGolf values	(0,0,0,500,'','',0,''),
+								(1,1,0,500,'','',0,'')
 
 insert into CanchaTenis values	(0,0,0,600,'','',''),
 								(1,1,0,600,'','','')
